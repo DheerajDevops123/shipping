@@ -1,5 +1,7 @@
-FROM        java:8
+FROM        maven
 RUN         mkdir /app
 WORKDIR     /app
-COPY        shipping.jar .
+COPY        src/ src/
+COPY        pom.xml .
+RUN         mvn clean package
 CMD         ["java", "-jar", "shipping.jar"]

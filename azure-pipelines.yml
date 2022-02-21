@@ -1,0 +1,24 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+variables:
+  tag: '$(Build.BuildId)'
+
+steps:
+- task: Docker@2
+  inputs:
+    command: 'build'
+    repository: 'dheerajdevops123/shipping'
+    Dockerfile: '**/Dockerfile'
+  displayName: "Docker Build"
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerHub'
+    repository: 'dheerajdevops123/shipping'
+    command: 'Push'
+    Dockerfile: '**/Dockerfile'
+  displayName: "Docker Push"

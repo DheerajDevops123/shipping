@@ -4,4 +4,4 @@ WORKDIR     /app
 COPY        src/ src/
 COPY        pom.xml .
 RUN         mvn clean package
-CMD         ["java", "-jar", "shipping.jar"]
+ENTRYPOINT         ["java", "-jar", "shipping.jar"]
